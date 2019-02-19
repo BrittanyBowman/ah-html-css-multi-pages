@@ -1,0 +1,16 @@
+.title {
+	margin: 0;
+}
+.hero {
+	height: 500px;
+	background: url('../img/hawaii.jpg')
+		center no-repeat;
+	background-size: cover;
+	clear: right;
+}
+.hero .title {
+	text-align: center;
+	font-size: 4em;
+	font-family: sans-serif;
+	font-weight: 100;
+}
