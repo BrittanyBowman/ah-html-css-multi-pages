@@ -2,76 +2,155 @@
 
 # Project Summary
 
-In this project we will be creating a single page portfolio site using HTML and CSS.
+In this project we will be recreating our portfolio page to use multiple pages.
 
-This project is designed to reinforce what you have learned during the previous week. At the bottom of this README is a high level overview of key topics. Use that to help solidify the skills in conjunction with this project
+This project will reuse a lot of the code you have already built but add in multiple pages and add some semantic HTML.
+
+## Setup
+Fork and clone this repository to have it under your GitHub profile and have it locally on your computer. Remember, we built our initial file structure to have some sort of organization so be sure to clone it down to the correct folder you want it to live.
 
 ## Step One
-Open your terminal and navigate to where your project will live. You should have a `devmtn` or similary named folder that will hold all of your projects during your time at DevMountain.
+In this step we will be laying the ground work for the rest of our project. We will be restructuring a lot of the code and laying it out to be more reusable.
 
-Once you have navigated to the appropriate folder, create a new folder called `html-portfolio`. Navigate inside of `html-portfolio` and create two files: `index.html` and `style.css`.
+We first need to create two new folders, `styles` and `pages`. This can be done in VSCode or your terminal. Inside of the new `styles` folder, add four new files: `contact.css`, `projects.css`, `home.css` and `index.css`.
 
-Open your newly created folder in your text editor.
+Instead of writing all of our CSS in one single `.css` file, we can break them out to separate files. This makes our code more maintainable as it grows.
+
+Inside of the `pages` folder, create two new files: `contact.html` and `projects.html`. You should now have a pretty good idea of how we will be adjusting our code to be more maintainable and usable.
 
 ### Solution
 <details>
 
-  * **_Navigate to Appropriate folder_**
-  * `mkdir html-portfolio`
-  * `touch index.html && style.css`
+  * Create `styles` folder
+    * Add `contact.css`
+    * Add `projets.css`
+    * Add `home.css`
+    * Add `index.css`
+  * Create `pages` folder
+    * Add `contact.html`
+    * Add `projects.html`
+  
 </details>
 
 ## Step Two
-Open the `index.html` file. This is where we will build out the main structure of our page. Let's build that structure now.
-
-There is a common pattern that most all `.html` files follow and it looks similar to this:
+Open the `index.html` files so we can get to cutting the code out and putting it into different files. Find the section of code for your projects. It should be something like this: 
 
 ```html
-<!DOCTYPE html>
-<html>
-<head>
-  <!-- Information like site title, links to CSS & JS -->
-</head>
-<body>
-  <!-- Elements go here -->
-</body>
-</html>
+<div class="projects-container">
+  <h1 class="title">Projects</h1>
+  <div class="projects">
+    <div class="project one"></div>
+    <div class="project two"></div>
+    <div class="project three"></div>
+  </div>
+</div>
 ```
 
-Create this same structure for your site. You will also need to include a title for your site and a link to your `style.css` file.
+We will want to change our outtermost `div` to be a `section` element. Remember, semantic elements provide meaning to our layout. In this case, `section` means a new section of content.
+
+Create the basic structure to our `projects.html` page includeing the `html`, `head` and `body` elements and paste the projects code from `index.html` into the `body` element.
+
+We will want to follow a similar pattern for our `contact.html` page.
 
 ### Solution
 <details>
 <summary><code>index.html</code></summary>
-  ```html
-  <!DOCTYPE html>
-  <html>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <link rel="stylesheet" href="./style.css">      
-    <title>Portfolio Page</title>
+    <title>Portfolio Site</title>
   </head>
   <body>
-    <!-- Elements go here -->
+    <section class="hero">
+      <h1 class="title">Bryan Smith</h1>
+    </section>
+    <section class="about">
+      <h1 class="title">About</h1>
+      <p>
+        My name is Bryan Smith and I am an instructor at DevMountain. I have been
+        developing for about 5 years now and absolutely love it. Do I have any other
+        hobbies you ask? I sure do! You can see them below:
+      </p>
+      <ul>
+        <li>Skateboarding</li>
+        <li>Home Renovation</li>
+        <li>Tattoos</li>
+        <li>Lawn Care</li>
+        <li>Hanging Out With My Family</li>
+      </ul>
+    </section>
   </body>
+</html>
+```
+  
+</details>
+<details>
+<summary><code>projects.html</code></summary>
+
+```html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <title>Projects</title>
+    </head>
+    <body>
+      <section class="projects-container">
+        <h1 class="title">Projects</h1>
+        <div class="projects">
+          <div class="project one"></div>
+          <div class="project two"></div>
+          <div class="project three"></div>
+        </div>
+      </section>
+    </body>
   </html>
-  ```
+```
+  
+</details>
+
+<details>
+<summary><code>contact.html</code></summary>
+
+```html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <title>Contact Me</title>
+    </head>
+    <body>
+      <section class="contact">
+        <h1 class="title">Contact</h1>
+        <div class="email">
+          <p>Email: <a href="mailto: abc@example.com">bryan@devmtn.com</a></p>
+        </div>
+        <div class="phone">
+          <p>Phone: <a href="tel:1-562-867-5309">1-562-867-5309</a></p>
+        </div>
+        <div class="github">
+          <p>GitHub: <a href="github.com/bryansmith33">Check out my code!</a></p>
+        </div>
+      </section>
+    </body>
+  </html>
+```
+  
 </details>
 
 ## Step Three
-Inside of the `index.html` file, let's go ahead and start to add some structure to our page. Our layout will follow a common pattern for each section; Container -> Title -> Content.
+In this step we will add the styling to each of our new pages. One thing to consider though is that we have four `css` files but only have three pages. Think for a moment why we would do that?
 
-* Create a `div` with a class of `hero`. This will be the main content someone sees once they come to our page.
-  * Inside of the new `div`, create an `h1` element that has the text of your name and a class of `title`.
+We want to have an `index.css` file that we will include in all of our pages. The reason for this is that some styling needs to be included on all pages. 
 
-* Below the newly created `div`, we will want to create a new `div` with a class of `about`.
-  * Create an `h1` inside of the `div` element with the text of `About`. It should also have a class of `title`.
+We break our CSS out into separate files because there will be some style that is unnecessary for the page so there is no reason to load it if we don't need to.
 
-* Next we will make a new `div` with a class of `projects`.
-  * We will need to follow the same steps as above. Create an `h1` inside of the `projects` `div`. The text should be `Projects` and have a class of `title`.
+In our `index.html` file, let's add two new `link` elements to link our styles. Create two links:
 
-* Last, we will create a `div` with a class of `contact`.
-  * Following the pattern we set above, add an `h1` with the text of `Contact` and class of `title`.
+* One to link the `index.css` file
+* One to link the `home.css` file
 
+Follow this process for the `Projects` and `Contact` pages but with their correct CSS link below the `index.css` link. One thing to consider here is that our `index.html` file is not included in our `pages` folder but the `Projects` and `Contact` page are. Think about what changes you would have to make to your file path when referencing your CSS files.
 
 ### Solution
 <details>
@@ -79,424 +158,245 @@ Inside of the `index.html` file, let's go ahead and start to add some structure 
 
 ```html
 <!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="./style.css">      
-  <title>Portfolio Page</title>
-</head>
-<body>
-  <div class="hero">
-    <h1 class="title">Bryan</h1>
-  </div>
-  <div class="about">
-    <h1 class="title">Title</h1>
-  </div>
-  <div class="projects">
-    <h1 class="title">Projects</h1>
-  </div>
-  <div class="contact">
-    <h1 class="title">Contact</h1>
-  </div>
-</body>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="./styles/index.css" />
+		<link rel="stylesheet" href="./styles/home.css" />
+		<title>Portfolio Site</title>
+	</head>
+	<body>
+    <!-- More HTML -->
+  </body>
+</html>
+```
+</details>
+
+<details>
+<summary><code>Projects.html</code></summary>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="../styles/index.css" />
+		<link rel="stylesheet" href="../styles/projects.css" />
+		<title>Projects</title>
+	</head>
+	<body>
+    <!-- More HTML -->
+  </body>
+</html>
+```
+</details>
+
+<details>
+<summary><code>contact.html</code></summary>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="../styles/index.css" />
+		<link rel="stylesheet" href="../styles/contact.css" />
+		<title>Contact Me</title>
+	</head>
+	<body>
+    <!-- More HTML -->
+  </body>
 </html>
 ```
 </details>
 
 ## Step Four
-All right, let's get to some styling. It can often be intimidating to know which part of your site you should start to structure next. One practice to make things seem more simple and get an idea of the structure of your site is to add solid colors to each section so they have some sort of visual representation.
+We now want to start moving the CSS to their correct files so they aren't all inside of our sinlge `style.css` file. Looking in `style.css` file, what do you think could be included in our index.css file to applied to every page?
 
-Open the `style.css` file and add the CSS below to the top of your file.
+After a little  review, we an see that the `.title` selector is used on every page and the `.about, .contact` select is used for two pages so let's include both of those. We will also be adding a new selector to get rid of the white border around our page. That is a margin that is added to the `body` element. Add these styles to our `index.css` file inside of our `styles` folder.
+
+<details>
+<summary><code>index.css</code></summary>
 
 ```css
-  .hero {
-    height: 500px;
-    background: #e05050;
+  body {
+    margin: 0;
   }
-  .about {
-    height: 500px;
-    background: #62ce62;
+  .title {
+    margin: 0;
   }
-  .projects {
-    height: 500px;
-    background: #e2e25f;
-  }
+  .about,
   .contact {
-    height: 500px;
-    background: #6464f5;
+    max-width: 800px;
+    margin: 15px auto;
   }
 ```
+</details>
 
-Let's go ahead and open up our project in your browser of choice so we can see how are portfolio page is shaping up so far.
+<br>
 
-You should see four large blocks of color with the appropriate text in the top left corner of each block.
+Let's go ahead and add styling to our `home.css` file. Looking back in the `index.css` file, what can we remove and add to `home.css`?
 
-We will be leaving these solid colors in place until we manipulate each section to include its own styling.
-
-Let's add a background image to our `hero` div. Head on over to [unsplash](www.unsplash.com), and find an image you want to use as the background for your div.
-
-* Search for a topic like Hawaii, Mountains or Snow and select a picture that is appealing to you. 
-* In the top right, click the button that says `Download free`.
-* Create a new folder called `images` that in next to your `index.html` and `style.css` files.
-* Move the newly downloaded image into our `images` folder.
-
-Your file structure should now look something like this:
-
-```
-html-portfolio
-│   index.html
-│   style.css   
-└───images
-│   │   image.jpg
-```
-
-Now lets get to work on using that new image as the background to our `hero` div and styling the `h1`.
-
-Back inside of the `style.css` file, add a new property to the `.hero` selector called `background` with a value of `url(PATH_TO_IMAGE) center no-repeat;`. We also want to add a property called `background-size` and set it to `cover`.
-
-This will make our image fill the available space of our div, which is `500px` tall and `100%` of the available screen space.
-
-Below our `.hero` selector, create a new selector: `.hero h1`. Think for a moment what element this will target...The `h1` inside of the `.hero` div! We want to remove the `margin` from the element, align it in the middle of the div and make it a little bit bigger. Feel free to adjust the font weight and family as you see fit.
-
-### Solution
+Looks like we can add the `.hero` and `.hero .title` selectors. Note that we will have to adjust the path to our hero image.
 <details>
-<summary><code>style.css</code></summary>
+<summary><code>home.css</code></summary>
 
 ```css
 .hero {
   height: 500px;
-  background: url(PATH_TO_IMAGE) center no-repeat;
+  background: url('../img/hawaii.jpg')
+    center no-repeat;
   background-size: cover;
+  clear: right;
 }
-
-.hero h1 {
-  margin: 0;
+.hero .title {
   text-align: center;
   font-size: 4em;
   font-family: sans-serif;
   font-weight: 100;
 }
-  ```
+```
 </details>
 
-We are well on our way to creating a beautiful page.
+<br>
+
+Next up we will look to add styling to our `projects.css` file. Follow the pattern above and see what should be added.
+
+<details>
+<summary><code>projects.css</code></summary>
+
+```css
+.projects-container {
+  background: #111;
+  color: #fff;
+  padding: 50px 0;
+  text-align: center;
+}
+.projects {
+  margin: 0 auto;
+}
+.project {
+  height: 300px;
+  width: 300px;
+  margin: 0 15px;
+  display: inline-block;
+}
+.project.one {
+  background: green;
+}
+.project.two {
+  background: blue;
+}
+.project.three {
+  background: aquamarine;
+}
+```
+</details>
+
+<br>
+
+And finally we will do the same as above for our `contact.css` file.
+
+<details>
+<summary><code>contact.css</code></summary>
+
+```css
+.contact {
+  margin: 50px auto;
+  text-align: center;
+}
+```
+</details>
 
 ## Step Five
-You may notice now that there is a gap between all of your sections even though you haven't specified for there to be one. The reason for this is because of the margin that is applied by default to the `h1` tag. Let's go ahead and remove that from all `h1` tags. Be careful when you do this though as it will be applied to all `h1` tags that have access to this style sheet so be sure to target the `.title` class.
+Let's go ahead and load up our page in our browser to see hwo things are shaping up. Fantastic! We now have our site separated out into maintainable pieces. But there is just one problem...We can't navigate to any of our other pages. Let's go ahead and fix that by adding a `nav` element to each of our pages.
 
-Head over to the `style.css` file and select all `h1` elements and apply a `margin` of `0`. Notice now that we are repeating ourselves in the `.hero h1` selector. We can remove that styling so it remains DRY (don't repeat yourself).
+our `nav` element will need a class of `navbar`. While we could just target our `nav` element in our CSS, adding a class is a great way to make sure it is more specific should any pranksters come along and add a style to our `nav` element in any of our CSS files.
 
-We now want to style our `About` section. Let's first start off by remove the green background color. You will also notice that we have a set height of `500px`. It will be rare you want something to be a set height. You will most likely want it to be th height of it's child elements. Remove the `height` property and notice that it is now just has big as our `About` text. Let's add some more content inside of our `about` container in the `index.html` file.
+Inside of the `nav` let's add a `span` element with a class of `name` and an `h1` element inside of that that contains our name. The structure should look like this:
 
-We will want to add a simple paragraph about ourselves. This should be a few sentences talking all about you. Underneath that we want to list out five hobbies.
+```html
+<nav class="navbar">
+  <span class="name">
+    <h1>Bryan Smith</h1>
+  </span>
+</nav>
+```
 
-You might notice now that this just isn't very visually appealing. We can do a little bit of CSS to make it look better. Go ahead and add a property of `max-width` with a value of `800px` to the `.about` selector. Using `max-width` is a great option because something will never be bigger but can still be flexible enough to scale on a mobile screen.
+Next we want to actually add the ability to navigate to different pages. Thinking back to our first HTML/CSS project, what element will we use if we want to list things?
 
-We also want to add a `margin` property with a value of `15px auto`. This will align our content right in the middle of our screen and add `15px` to the top and bottom to give it some spacing.
+If you guessed a `ul` element, you are correct! Let's added that as a sibling of our `span` element and give it a class of `navlink`. Inside of the `ul`, we want to add three `li` elements that have a `a` element inside of them. 
 
+Each `a` element should have three things:
+  * A class of `link`
+  * An `href` with the correct path to the page
+  * Inner text with the name of the page you are navigating to.
+
+The last thing we need to do is add our newly created `nav` element to each page. We need to add it to the top of each file because we want it to display at the top of our page. Think for a moment why we need to add it to every page? Because we want to be able to use our navigation on each page.
+
+Remember, we will have to adjust the file path to our other pages in the `href` depending on which page we are currently viewing.
+
+Before looking at the solution, push yourself to try and add these elements on your own.
 
 ### Solution
 <details>
-<summary><code>index.html</code></summary>
+<summary><code>nav code</code></summary>
 
 ```html
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="./style.css">      
-  <title>Portfolio Page</title>
-</head>
-<body>
-  <div class="hero">
-    <h1 class="title">Bryan</h1>
-  </div>
-  <div class="about">
-    <h1 class="title">Title</h1>
-      <p>My name is Bryan Smith and I am an instructor at DevMountain. I have been developing for about 5 years now and absolutely love it. Do I have any other hobbies you ask? I sure do! You can see them below:
-      </p>
-      <ul>
-          <li>Skateboarding</li>
-          <li>Home Renovation</li>
-          <li>Tattoos</li>
-          <li>Lawn Care</li>
-          <li>Hanging Out With My Family</li>
-      </ul>
-  </div>
-  <div class="projects">
-    <h1 class="title">Projects</h1>
-  </div>
-  <div class="contact">
-    <h1 class="title">Contact</h1>
-  </div>
-</body>
-</html>
-```
-</details>
-<details>
-<summary><code>style.css</code></summary>
-
-```css
-.title {
-  margin: 0;
-}
-/* more css */
-/* more css */
-/* more css */
-.hero h1 {
-  text-align: center;
-  font-size: 4em;
-  font-family: sans-serif;
-  font-weight: 100;
-}
-.about {
-  max-width: 800px;
-  margin: 15px auto;
-}
+<nav class="navbar">
+  <span class="name">
+    <h1>Bryan Smith</h1>
+  </span>
+  <ul class="navlinks">
+    <li><a class="link" href="../index.html">Home</a></li>
+    <li><a class="link" href="../pages/projects.html">Projects</a></li>
+    <li><a class="link" href="../pages/contact.html">Contact</a></li>
+  </ul>
+</nav>
 ```
 </details>
 
 ## Step Six
 
-In this step we will be adding some place holders for our projects. It will follow some of the same steps as before but add a few new layers to our structure.
+We should now have a functioning `nav` element that we can use to see our other pages. While it does function, it is ugly as sin and we should clean that up. Being that the `nav` element is included on every page, where do you think we should add the styling for it? In the `index.css` since it is on all pages.
 
-Starting off in our `index.html` page, inside of the `Projects` div but below the `h1`, we need to create a child `div` that has a class of `.projects`. Let's stop and think for a moment though, didn't we already use a class called `.projects`? We did! Be very careful with naming things. While we can reuse class names, this would be a totally different structure than our original `.projects` class, so lets rename the container div to be `projects-container`. You will also need to update the `style.css` file the correct name as well.
+We will want our name to be on the left side of the screen and have the links to the different pages on the right side. We want the background of our `nav` to be `#333` and the text to be `#fff`
 
-Now that we have that sorted out, we will want to add three placeholders for some future projects we will build. Inside of the div with a class of `projects`, add three `div` elements that each have a class of `project`.
+Think how we will get our nav links over to the right side of the screen? We can float them! We will also want to remove the bullets to the left of each link and line the up side by side. Play around with the CSS and try to figure this out on your own
 
-* We will want to remove the yellow background from the `Projects` div and replace it with a black background which means we will also need to update our font color to be white. 
-* We then will want to center our title in the middle of the page. 
-
-* After that, we want to add some styling to each project. Give them all a `height` and `width` of 300px. Apply a `display` property that would allow them to line up side by side to each other. We also want them displayed in the middle of the screen. We may also want to add a little space between each placeholder.
-
-* Once that is complete, let's add a second class name to each project. This can be done following this syntax `class="project one"`. Give each project an additional class of `one`, `two` and `three`, respectively.
-
-* Give each newly added class a different color property.
+The last thing we will want to do is remove that awful blue color from the `a` tag and make them `#fff` all the time.
 
 ### Solution
 <details>
-<summary><code>index.html</code></summary>
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="./style.css">      
-  <title>Portfolio Page</title>
-</head>
-<body>
-<div class="hero">
-	<h1 class="title">Bryan Smith</h1>
-</div>
-<div class="about">
-	<h1 class="title">About</h1>
-	<p>My name is Bryan Smith and I am an instructor at DevMountain. I have been developing for about 5 years now and absolutely love it. Do I have any other hobbies you ask? I sure do! You can see them below:</p>
-	<ul>
-		<li>Skateboarding</li>
-		<li>Home Renovation</li>
-		<li>Tattoos</li>
-		<li>Lawn Care</li>
-		<li>Hanging Out With My Family</li>
-	</ul>
-</div>
-<div class="projects-container">
-	<h1 class="title">Projects</h1>
-	<div class="projects">
-		<div class="project one"></div>
-		<div class="project two"></div>
-		<div class="project three"></div>
-	</div>
-</div>
-<div class="contact">
-	<h1 class="title">Contact</h1>
-</div>
-</body>
-</html>
-```
-</details>
-<details>
-<summary><code>style.css</code></summary>
+<summary><code>index.css</code></summary>
 
 ```css
-.projects-container {
-	background: #111;
-	color: #fff;
-	padding: 50px 0;
-	text-align: center;
+.navbar {
+  padding: 0 16px;
+  background: #333;
+  color: #fff;
 }
-.projects {
-	margin: 0 auto;
+.navbar h1 {
+  display: inline-block;
 }
-.project {
-	height: 300px;
-	width: 300px;
-	margin: 0 15px;
-	background: red;
-	display: inline-block;
+.navlinks {
+  float: right;
+  margin: 25px 0;
+  padding: 0;
+  list-style-type: none;
 }
-.project.one {
-	background: green;
+.navlinks li {
+  display: inline;
+  margin: 0 10px;
 }
-.project.two {
-	background: blue;
-}
-.project.three {
-	background: aquamarine;
-}
-```
-</details>
-
-## Step Seven
-In our final step, we will be updating our `Contact` section to include our email address, phone number and link to our github profile.
-
-Lets start off by removing the blue background and height of `500px` from the `.contact` selector.
-
-Notice that our `h1` is still all the way on the left. We want it to be uniform with our `About` section `h1` so let's copy the styling to make the width the correct size. Think for a moment how we can accomplish that without repeating ourselves?
-
-We can add a `,` after the `.about` selector and then target our `.contact` class so we can easily share styling across different sections of our page. 
-
-We will now want to create our links to be contacted. We will want to create three new `div`s each with their own class:
- * `email`
- * `phone`
- * `github`
-
- Inside of each div there should be an `a` element. Remember, `a` tags are used to send a user to a specific place or perform certain action. The `a` elements should have the appropriate values for yourself.
-
-The last thing we will need to do is center our `contact ` div and the text inside of it. Think about how we can accomplish that goal before moving forward.
-
-### Solution
-<details>
-<summary><code>index.html</code></summary>
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="./style.css">      
-  <title>Portfolio Page</title>
-</head>
-<body>
-  <div class="hero">
-    <h1 class="title">Bryan</h1>
-  </div>
-  <div class="about">
-    <h1 class="title">Title</h1>
-      <p>My name is Bryan Smith and I am an instructor at DevMountain. I have been developing for about 5 years now and absolutely love it. Do I have any other hobbies you ask? I sure do! You can see them below:
-      </p>
-      <ul>
-          <li>Skateboarding</li>
-          <li>Home Renovation</li>
-          <li>Tattoos</li>
-          <li>Lawn Care</li>
-          <li>Hanging Out With My Family</li>
-      </ul>
-  </div>
-  <div class="projects">
-    <h1 class="title">Projects</h1>
-  </div>
-  <div class="contact">
-    <h1 class="title">Contact</h1>
-    <div class="email">
-		  <p>Email: <a href="mailto: abc@example.com">bryan@devmtn.com</a></p>
-    </div>
-    <div class="phone">
-      <p>Phone: <a href="tel:1-562-867-5309">1-562-867-5309</a></p>
-    </div>
-    <div class="github">
-      <p>GitHub: <a href="github.com/bryansmith33">Check out my code!</a></p>
-    </div>
-  </div>
-</body>
-</html>
-```
-</details>
-<details>
-<summary><code>style.css</code></summary>
-
-```css
-.title {
-	margin: 0;
-}
-.hero {
-	height: 500px;
-	background: url(PATH_TO_IMAGE)
-		center no-repeat;
-	background-size: cover;
-}
-
-.hero h1 {
-	text-align: center;
-	font-size: 4em;
-	font-family: sans-serif;
-	font-weight: 100;
-}
-.about,
-.contact {
-	max-width: 800px;
-	margin: 15px auto;
-}
-.projects-container {
-	background: #111;
-	color: #fff;
-	padding: 50px 0;
-	text-align: center;
-}
-.projects {
-	margin: 0 auto;
-}
-.project {
-	height: 300px;
-	width: 300px;
-	margin: 0 15px;
-	background: red;
-	display: inline-block;
-}
-.project.one {
-	background: green;
-}
-.project.two {
-	background: blue;
-}
-.project.three {
-	background: aquamarine;
-}
-.contact {
-	margin: 50px auto;
-	text-align: center;
+.link {
+  color: #fff;
 }
 ```
 </details>
 
 ## Wrap Up
 
-**HTML**: HyperText Markup Languge. Whhat we will use to structure our pages and create our layouts. Follows a parent - child relationship/nesting structure.
+**Semantic HTML**: We should strive to use semantic HTML elements. These elements provide meaning to our webpage rather than just a sea of `div`'s with no meaning.
 
-**Element**: The specific name of something that we will use to structure our site. Things like `h1`, `p`, `div`.
-
-**Tag**: The opening `<` and  closing `/>` wrapping the element. Remember, some elements like `img` are self closing meaing they are closed like this `<img />`.
-
-**CSS**: Cascading Style Sheet. What we will use to style our pages. CSS follows two rules: Cascading and Specificity.
-
-**Cascading**: CSS will apply its styling from the top of the file to the bottom. If there is a selector that has the same specificty lower in the file, that styling will take precedence.
-
-**Specificity**: CSS follows a weighting system for specificity. The higher the weight, the more specific the styling thus meaing it will be applied.
-
-**Class**: The most common way to select an element for styling. can be applied to the element like this: `class="class-name"` and then selected in the CSS file like this: `.class-name {}`. Classes have a weight of 10.
-
-**ID**: IDs are another option for styling and selecting elements. They are more specific than classes. They should be used sparingly. They ca be assigned like this: `id="id-name"` and accessed in the CSS file like this `#id-name{}`. IDs have a weight of 100, meaning they take precedence even if they are at the top of your CSS file compared to a lower class.
-
-**Height**: CSS property we use to set the height of our element. It is best practice to let your parent container element adjust to the size of its children content.
-
-**Width**: CSS property to set the width of our element.
-
-**Margin**: CSS property to set the space between our elements. This is an invisible boundary that other elements will respect.
-
-**Padding**: CSS property to add additional space to our element. This will make our element larger.
-
-**CSS Unit Measurements**:
-  * **px**: Represents pixels.
-  * **%**: Represents a percentage of available space.
-
-
-
+**`<a>` Element**: Stands for `anchor`. We use this element to link to different parts of our site or external sites. Must include an `href` to point where the link should take the user.
 
 ## Contributions
 
